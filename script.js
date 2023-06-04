@@ -27,3 +27,41 @@ function playRound(playerSelection, computerSelection) {
     return `You Lose! ${computerSelection} beats ${playerSelectionInCapitalizeCase}`;
   }
 }
+
+function getGameResult(playerScore, computerScore) {
+  if (playerScore === computerScore) {
+    return 'The draw won!';
+  } else if (playerScore > computerScore) {
+    return 'The winner is the player!';
+  } else {
+    return 'The winner is the computer!';
+  }
+}
+
+function game() {
+  let computerScore = 0;
+  let playerScore = 0;
+
+  for (let i = 0; i < 5; i++) {
+    const playerSelection = prompt(
+      'Choose a "rock", "scissors" or "paper"',
+      'rock'
+    );
+    const computerSelection = getComputerChoice();
+    const roundResult = playRound(playerSelection, computerSelection);
+
+    console.log(roundResult);
+
+    if (roundResult.startsWith('You Win!')) {
+      playerScore++;
+    } else if (roundResult.startsWith('You Lose!')) {
+      computerScore++;
+    }
+
+    console.log(playerScore, computerScore);
+  }
+
+  console.log(getGameResult(playerScore, computerScore));
+}
+
+game();
